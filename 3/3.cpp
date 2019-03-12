@@ -1,3 +1,5 @@
+// 过滤重复字符串
+
 #include <stdio.h>
 #include <iostream>
 #include <stdlib.h>
