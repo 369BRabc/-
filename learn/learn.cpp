@@ -1,35 +1,42 @@
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include <vector>
+#include <algorithm>
 
-struct node {
+using namespace std;
+
+typedef struct node {
 	int data;
-	node* next;
-};
-
-node* create(int Array[]) {
-	node *p, *pre, *head;
-	head = new node;
-	head->next = NULL;
-	pre = head;
-	for(int i = 0; i < 5; i++) {
-		p = new node;
-		p->data = Array[i];
-		p->next = NULL;
-		pre->next = p;
-		pre = p;
-	}
-	return head;
-}
-int* p = new int;
-node* p = new node;
+	struct node *next;
+} node;
 
 int main() {
-	int Array[5] = {5, 6, 7, 8, 9};
-	node* L = create(Array);
-	L = L->next;
-	while(L != NULL){
-		printf("%d", L->data);
-		L = L->next;
+	int n, i;
+	node *p, *q, *r;
+	cout << "input number n: " << endl;
+	cin >> n;
+
+	node* p = new node;
+	p->data = 1;
+	r = p;
+	for(int i = 2; i <= n; i++) {
+		node* q = new node;
+		q->data = i;
+		r->next = q;
+		q->next = p;
+		r = q;
 	}
-	return 0;
+
+	for(int i = 0; i < n; i++) {
+		p = p->next;
+		q = q->next;
+		if(i == n - 1) cout << p->data;
+		else cout << p->data;
+		q->next = p->next;
+		r = p;
+		p = p->next;
+		delete(r);
+	}
+
 }
