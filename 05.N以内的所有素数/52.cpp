@@ -6,9 +6,9 @@
 
 using namespace std;
 
-bool isPrime(int n) { // 质数判断法
+bool isPrime(int n) { // 质数判断法，理解了并不难
   if(n <= 1) return false;
-  int sqr = (int)sqrt(1.0 * n);
+  int sqr = (int)sqrt(1.0 * n); // sqrt需要传入double型变量
   for(int i = 2; i <= sqr; i++) {
     if(n % i == 0) return false;
   }

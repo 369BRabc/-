@@ -19,7 +19,8 @@ int main() {
   cout << "input string b:" << endl;
   cin >> b;
   int count = 0;
-  while(a.find(b) != string::npos){ // 注意这里的检测方法，-1也可以
+  // 关键之处
+  while(a.find(b) != string::npos){ // 注意这里的检测方法，-1也可以，记得使用find方法
     count++;
     a.erase(a.find(b), b.size()); // 注意erase的用法
   }

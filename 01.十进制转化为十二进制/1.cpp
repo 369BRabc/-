@@ -13,7 +13,7 @@ int main() {
 	cout << "输入十进制数字:" << endl;
 	cin >> x;
 	vector<char> num;
-	do {
+	do { // 用do while是为了处理输入为0的情况
 		int temp = x % 12;
 		if(temp == 10) 
 			num.insert(num.begin(), 'A');

@@ -1,3 +1,4 @@
+// 求最大公共子串
 #include <iostream>
 #include <stdio.h>
 #include <string>
@@ -12,7 +13,7 @@ int main() {
   cout << "input b" << endl;
   cin >> b;
   int l1 = a.size(), l2 = b.size();
-  int maxlen = 0, maxpos = -1;
+  int maxlen = 0, maxpos = -1; // 最大公共长度和最大公共子串起始位置
   for(int i = 0; i < l1; i++) {
     for(int j = 0; j < l2; j++) {
       if(a[i] == b[j]) {

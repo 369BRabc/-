@@ -1,3 +1,5 @@
+// 埃氏筛选法
+// N以内的所有素数
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
@@ -11,7 +13,7 @@ int main() {
   cin >> n;
   bool p[n] = {false};
   vector<int> prime;
-  for(int i = 2; i < n; i++) { // 使用埃氏筛法，降低时间复杂度，应对n比较大的情况
+  for(int i = 2; i <= n; i++) { // 使用埃氏筛法，降低时间复杂度，应对n比较大的情况
     if(p[i] == false) {
       for(int j = i + i; j < n; j += i) {
         p[j] = true;

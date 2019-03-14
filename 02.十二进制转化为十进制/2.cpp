@@ -16,7 +16,7 @@ int main() {
 	int result = 0;
 	for(int i = 0; i < s.size(); i++) {
 		int j;
-		if(s[i] > 'B') {
+		if(s[i] > 'B') { // 要适当考虑错误处理
 			result = -1;
 			break;
 		}
@@ -26,7 +26,7 @@ int main() {
 			j = 11;
 		else 
 			j = (s[i] - 48);
-		result = result * 12 + j;
+		result = result * 12 + j; // 关键一步，体会思想，先用十进制如345的计算来体会
 	}
 	if(result == -1) {
 		cout << "输入有误" << endl;
