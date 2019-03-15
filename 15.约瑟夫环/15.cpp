@@ -33,7 +33,7 @@ void solve(int n, int m, int s) {
 
 int main() {
 	int n, m, s; // n总数，m间隔，s开始位置
-	cout << "intpu n, m, s:" << endl;
+	cout << "intput n, m, s:" << endl;
 	scanf("%d %d %d", &n, &m, &s);
 	solve(n, m, s);
 	system("pause");
