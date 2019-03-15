@@ -1,37 +1,41 @@
-#include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <vector>
+#include<iostream>
+#include<vector>
 #include <algorithm>
-
 using namespace std;
-
-void solve(int n, int m, int s) {
-	vector<int> v(n);
-	for(int i = 0; i < n; i++) v[i] = i; // 标记数组，删除后改为-1
-	int outnum = 0; // 出局人数
-	int saynum = 1; // 正在报出的数字
-	while(outnum < n){
-		while(saynum < m) {
-			s = (s + 1) % n; // 向后推进
-			if(v[s] != -1) saynum++;
+ 
+void findpath(vector<int> a,vector<int> path,int n,int start,int sum){
+	for(int i=start;i<n;i++){//从第一个数开始遍历
+		sum-=a[i];
+		path.push_back(i);
+		if(sum==0){//说明找到了满足要求的一条路径
+			for(int j=0;j<path.size();j++){
+				cout<<a[path[j]]<<" ";
+			}
+			cout<<endl;
+			path.clear();
 		}
-		// 找到了报数为m的位置
-		cout << "delete:" << s + 1 << endl;
-		v[s] = -1;
-		outnum++;
-		if(outnum < n) {
-			saynum = 1;
-			while(v[s] == -1) s = (s + 1) % n;
+		else if(sum>0){//目前的和小于要求的和，要继续往后找
+			findpath(a,path,n,i+1,sum);
 		}
+		sum+=a[i];//如果和大于了sum，说明当前这个数不能加入路径里
+		if(path.size()>0)path.pop_back();
+ 
 	}
 }
-
-int main() {
-	int n, m, s; // n总数，m间隔，s开始位置
-	cout << "intpu n, m, s:" << endl;
-	scanf("%d %d %d", &n, &m, &s);
-	solve(n, m, s);
-	system("pause");
+int main(){
+	int n;
+	cin>>n;
+	int temp;
+	vector<int> data;
+	for(int i=0;i<n;i++){
+		cin>>temp;
+		data.push_back(temp);
+	}
+	int sum;
+	cin>>sum;
+	vector<int> allpath;
+	findpath(data,allpath,n,0,sum);
+	cin.get();
+	cin.get();
 	return 0;
 }
