@@ -15,15 +15,15 @@ void solve(int n, int m, int s) {
   for(int i = 0; i < n; i++) a[i] = i;
   while(cnt < n) { // 已删除的人比n小
     while(say_num < m) {
-      s = (s + 1) % n;
+      s = (s + 1) % n; // 向后推
       if(a[s] != -1) say_num++;
     }
     cout << s << endl;
     cnt++; // 第s个人报数为m
-    a[s] = -1;
+    a[s] = -1; // 修改被删除的位置值为-1
     if(cnt < n) {
-      say_num = 1;
-      while(a[s] == -1) {
+      say_num = 1; // 初始化say_num
+      while(a[s] == -1) { // 将s移动到有数字的位置
         s = (s + 1) % n;
       }
     }

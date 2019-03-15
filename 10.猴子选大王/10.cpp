@@ -1,8 +1,8 @@
 /*
-	N个猴子围成一个圈
-	1、从第一只猴子开始报数，第一只猴子报1
-	2、每个报2的猴子退出，然后从下一只猴子重新开始报数，
-	3、要求输出退出的顺序和最后剩下的人
+N个猴子围成一个圈
+1、从第一只猴子开始报数，第一只猴子报1
+2、每个报2的猴子退出，然后从下一只猴子重新开始报数，
+3、要求输出退出的顺序和最后剩下的人
 */
 
 #include <iostream>
@@ -14,46 +14,33 @@
 
 using namespace std;
 
-/*---构造结构体---*/
-typedef struct node
-{
-	int data;
-	struct node *next;
-} node;
-
-int main()
-{
-	int n,i;
-	node *p,*q,*r;//p是工作指针，q指向p的前一个节点，r是尾指针
-	printf("请输入猴子的数目：");
-	scanf("%d",&n);
-
-	/*---构造循环单链表---*/
-	p=(node*)malloc(sizeof(node));
-	p->data=1;
-	r=p;
-	for(i=2;i<=n;i++)						//构造N个节点
-	{
-		q=(node*)malloc(sizeof(node));
-		q->data=i;
-		r->next=q;
-		q->next=p;							//指向头节点
-		r=q;								//尾指针后移
+void solve(int n, int m, int s) {
+	vector<int> v(n);
+	for(int i = 0; i < n; i++) v[i] = i; // 标记数组，删除后改为-1
+	int outnum = 0; // 出局人数
+	int saynum = 1; // 正在报出的数字
+	while(outnum < n) {
+		while(saynum < m) {
+			s = (s + 1) % n; // 向后推进
+			if(v[s] != -1) saynum++;
+		}
+		// 找到了报数为m的位置
+		outnum++;
+		v[s] = -1;
+		if(outnum < n) cout << "delete:" << s + 1 << endl;
+		else cout << "last:" << s + 1 << endl;
+		if(outnum < n) {
+			saynum = 1;
+			while(v[s] == -1) s = (s + 1) % n;
+		}
 	}
-	/*--遍历，将第2的猴子出局---*/
-	for(i=0;i<n;i++)
-	{
-		p=p->next;
-		q=q->next;
-		if(i==n-1)
-			printf("最后留下的猴子为：%d号\n",p->data);
-		else
-			printf("出局的猴子为：%d号\n",p->data);
-		q->next=p->next;
-		r=p;
-		p=p->next;
-		free(r);
-	}
+}
+
+int main() {
+	int n, m = 2, s = 1; // n总数，m间隔，s开始位置
+	cout << "intpu n:" << endl;
+	scanf("%d", &n);
+	solve(n, m, s - 1);
 	system("pause");
 	return 0;
 }

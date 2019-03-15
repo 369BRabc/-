@@ -43,7 +43,7 @@ int main() {
   sort(j.begin(), j.end());
   int maxSize = (j.size() > o.size()) ? j.size() : o.size();
   for(int i = 0; i < maxSize; i++) {
-    if(i < j.size()) result.push_back(j[i]);
+    if(i < j.size()) result.push_back(j[i]); // 奇数优先通过把这句放在前面实现
     if(i < o.size()) result.push_back(o[i]);
   }
   cout << "result is :" << endl;
