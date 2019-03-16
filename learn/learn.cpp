@@ -3,39 +3,20 @@
 #include <algorithm>
 using namespace std;
  
-void findpath(vector<int> a,vector<int> path,int n,int start,int sum){
-	for(int i=start;i<n;i++){//从第一个数开始遍历
-		sum-=a[i];
-		path.push_back(i);
-		if(sum==0){//说明找到了满足要求的一条路径
-			for(int j=0;j<path.size();j++){
-				cout<<a[path[j]]<<" ";
-			}
-			cout<<endl;
-			path.clear();
+int main() {
+	int n, k, x, maxSumSqu = -1, a[maxn];
+	vector<int> temp, ans;
+	void dfs(int index, int nowk, int sum, int sumSqu) {
+		if(nowk == k && sum == x) {
+			if(sumSqu > maxSumSqu) maxSumSqu = sumSqu;
+			ans = temp;
 		}
-		else if(sum>0){//目前的和小于要求的和，要继续往后找
-			findpath(a,path,n,i+1,sum);
-		}
-		sum+=a[i];//如果和大于了sum，说明当前这个数不能加入路径里
-		if(path.size()>0)path.pop_back();
- 
+		if(index == n || nowk > k || sum > x) return;
+		temp.push_back(a[index]);
+		dfs(index + 1, nowk + 1, sum + a[index], sumSqu + a[index] * a[index]) 
+		temp.pop_back();
+		dfs(index + 1, nowk, sum, sumSqu);
 	}
-}
-int main(){
-	int n;
-	cin>>n;
-	int temp;
-	vector<int> data;
-	for(int i=0;i<n;i++){
-		cin>>temp;
-		data.push_back(temp);
-	}
-	int sum;
-	cin>>sum;
-	vector<int> allpath;
-	findpath(data,allpath,n,0,sum);
-	cin.get();
-	cin.get();
+	system("pause");
 	return 0;
 }

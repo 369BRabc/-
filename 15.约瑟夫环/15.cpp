@@ -24,7 +24,7 @@ void solve(int n, int m, int s) {
 		cout << "delete:" << s + 1 << endl;
 		v[s] = -1;
 		outnum++;
-		if(outnum < n) {
+		if(outnum < n) { // 这里是在初始化
 			saynum = 1;
 			while(v[s] == -1) s = (s + 1) % n;
 		}

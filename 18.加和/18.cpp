@@ -1,6 +1,6 @@
 /*加和*/
 //给定一个整数t，以及n个整数，在这n个整数中找到加和为t的所有组合。
-
+// 深度优先搜索，典型应用，回溯法
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void dfs(vector<vector<int> >& results, vector<int>& result, vector<int>& candidates, int target, int level) {
+void dfs(vector<vector<int> > results, vector<int> result, vector<int> candidates, int target, int level) {
   // boundary
   if(target == 0) {
     results.push_back(result);
@@ -23,7 +23,7 @@ void dfs(vector<vector<int> >& results, vector<int>& result, vector<int>& candid
   }
 }
 
-vector<vector<int> > combinationSum(vector<int>& candidates, int target) {
+vector<vector<int> > combinationSum(vector<int> candidates, int target) {
   vector<vector<int> > results;
   vector<int> result;
   sort(candidates.begin(), candidates.end());
